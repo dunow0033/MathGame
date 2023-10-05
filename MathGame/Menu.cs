@@ -11,30 +11,77 @@ namespace MathGame
 {
 	class Menu
 	{
-		private string name;
-		private string menu_choice;
 		private string answer;
 		private int number1;
 		private int number2;
 		private int score = 0;
-		private List<Game> GameHistory = new List<Game>();
+		//private List<Game> GameHistory = new List<Game>();
 
-		public void giveMenu()
+		//public void giveMenu()
+		//{
+		//	
+		//	Console.WriteLine($"Welcome, {name}, today is {DateTime.Now.ToString("MM/dd/yyyy")}.");
+		//	Console.WriteLine("---------------------");
+		//	Console.WriteLine();
+		//	math_menu();
+		//}
+
+		internal void ShowMenu(string name)
 		{
-			Console.WriteLine("Hello, what is your name?");
-			name = Console.ReadLine();
-			Console.WriteLine($"Welcome, {name}, today is {DateTime.Now.ToString("MM/dd/yyyy")}.");
-			Console.WriteLine("---------------------");
-			Console.WriteLine();
-			math_menu();
+			var isGameOn = true;
+			do
+			{
+				Console.WriteLine("------------------------------");
+				Console.WriteLine($"Hello {name}. It's {DateTime.Now.ToString("MM/dd/yyyy")}. This is your math game.\n");
+				Console.WriteLine("Press any key to show menu");
+				Console.ReadKey();
+				Console.Clear();
+				Console.WriteLine($@"Please choose a subject:
+    V - View Previous Games
+    A - Addition
+    S - Subtraction
+    M - Multiplication
+    D - Division
+    Q - Quit the program");
+				Console.WriteLine("------------------------------");
+
+				var gameSelected = Console.ReadLine();
+
+				switch (gameSelected.Trim().ToLower())
+				{
+					case "v":
+						Helpers.PrintGames(name);
+						break;
+					case "a":
+						AdditionGame(name);
+						break;
+					case "s":
+						SubtractionGame(name);
+						break;
+					case "m":
+						//MultiplicationGame("Multiplication game");
+						break;
+					case "d":
+						//DivisionGame("Division game");
+						break;
+					case "q":
+						Console.Write("Goodbye");
+						isGameOn = false;
+						Environment.Exit(1);
+						break;
+					default:
+						Console.WriteLine("Invalid input");
+						break;
+				}
+			}
+			while (isGameOn);
 		}
 
-		public void AdditionGame()
+		public void AdditionGame(string name)
 		{
 			while (true)
 			{
 				Console.Clear();
-				Console.WriteLine("Addition game!!");
 				Random number = new Random();
 				number1 = number.Next(0, 20);
 				number2 = number.Next(0, 20);
@@ -42,51 +89,43 @@ namespace MathGame
 				Console.WriteLine($"{number1} + {number2}");
 				answer = Console.ReadLine();
 
-				if(answer.Trim().ToLower() == "q")
+				if (answer.Trim().ToLower() == "q")
 				{
-					GameHistory.Add(new Game
-					{
-						Score = score,
-						Date = DateTime.Now,
-						Type = GameType.Addition
-					});
-
+					Helpers.AddToHistory(score, GameType.Addition);
 					Console.WriteLine("Thank you!!");
 					Console.WriteLine();
 					Console.WriteLine($"Here is your score, {name}: {score}");
 					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
+					Console.WriteLine("Press any key to continue...");
+					Console.ReadKey();
 					Console.Clear();
-					math_menu();
+					break;
 				}
-				else if(Int32.Parse(answer) == (number1 + number2))
+				else if (Int32.Parse(answer) == (number1 + number2))
 				{
 					score++;
 					Console.WriteLine("Great, you got it right!!");
 					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
-					
+					Console.WriteLine("Press any key to continue...");
+					Console.ReadKey();
+
 				}
 				else //if (answer != (number1 + number2))
 				{
 					Console.WriteLine("Sorry, better luck next time!!");
 					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
-					continue;
+					Console.WriteLine("Press any key to continue...");
+					Console.ReadKey();
 				}
-            }
+			}
 		}
 
-		public void SubtractionGame()
+		public void SubtractionGame(string name)
 		{
-			Console.Clear();
-			Console.WriteLine("Subtraction game!!");
 
 			while (true)
 			{
+				Console.Clear();
 				Random number = new Random();
 				number1 = number.Next(0, 20);
 				number2 = number.Next(0, 20);
@@ -94,205 +133,165 @@ namespace MathGame
 				Console.WriteLine();
 				Console.WriteLine($"{number1} - {number2}");
 				answer = Console.ReadLine();
+
 				if (answer.Trim().ToLower() == "q")
 				{
-					GameHistory.Add(new Game
-					{
-						Score = score,
-						Date = DateTime.Now,
-						Type = GameType.Subtraction
-					});
+					//GameHistory.Add(new Game
+					//{
+					//	Score = score,
+					//	Date = DateTime.Now,
+					//	Type = GameType.Subtraction
+					//});
 					Console.WriteLine("Thank you!!");
 					Console.WriteLine();
 					Console.WriteLine($"Here is your score, {name}: {score}");
 					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
+					Console.WriteLine("Press any key to continue...");
+					Console.ReadKey();
 					Console.Clear();
-					math_menu();
+					break;
 				}
 				else if (Int32.Parse(answer) == (number1 - number2))
 				{
 					score++;
 					Console.WriteLine("Great, you got it right!!");
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
+					Console.WriteLine("Press any key to continue...");
+					Console.ReadKey();
 				}
 				else //if (answer != (number1 - number2))
 				{
 					Console.WriteLine("Sorry, better luck next time!!");
 					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
-					continue;
+					Console.WriteLine("Press any key to continue...");
+					Console.ReadKey();
 				}
 			}
 		}
 
-		public void MultiplicationGame()
-		{
-			Console.Clear();
-			Console.WriteLine("Multiplication game!!");
+		//		public void MultiplicationGame()
+		//		{
 
-			while (true)
-			{
-				Random number = new Random();
-				number1 = number.Next(0, 20);
-				number2 = number.Next(0, 20);
-				Console.WriteLine();
-				Console.WriteLine();
-				Console.WriteLine($"{number1} * {number2}");
-				answer = Console.ReadLine();
-				if (answer.Trim().ToLower() == "q")
-				{
-					GameHistory.Add(new Game
-					{
-						Score = score,
-						Date = DateTime.Now,
-						Type = GameType.Multiplication
-					});
-					Console.WriteLine("Thank you!!");
-					Console.WriteLine();
-					Console.WriteLine($"Here is your score, {name}: {score}");
-					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
-					Console.Clear();
-					math_menu();
-				}
-				else if (Int32.Parse(answer) == (number1 * number2))
-				{
-					score++;
-					Console.WriteLine("Great, you got it right!!");
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
-				}
-				else //if (answer != (number1 * number2))
-				{
-					Console.WriteLine("Sorry, better luck next time!!");
-					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
-					continue;
-				}
-			}
-		}
+		//			while (true)
+		//			{
+		//				Console.Clear();
+		//				Random number = new Random();
+		//				number1 = number.Next(0, 20);
+		//				number2 = number.Next(0, 20);
+		//				Console.WriteLine();
+		//				Console.WriteLine();
+		//				Console.WriteLine($"{number1} * {number2}");
+		//				answer = Console.ReadLine();
 
-		public void DivisionGame()
-		{
-			Console.Clear();
-				Console.WriteLine("Division game!!");
+		//				if (answer.Trim().ToLower() == "q")
+		//				{
+		//					GameHistory.Add(new Game
+		//					{
+		//						Score = score,
+		//						Date = DateTime.Now,
+		//						Type = GameType.Multiplication
+		//					});
+		//					Console.WriteLine("Thank you!!");
+		//					Console.WriteLine();
+		//					Console.WriteLine($"Here is your score, {name}: {score}");
+		//					Console.WriteLine();
+		//					Console.WriteLine("Press any key to continue...");
+		//					Console.ReadKey();
+		//					Console.Clear();
+		//					math_menu();
+		//				}
+		//				else if (Int32.Parse(answer) == (number1 * number2))
+		//				{
+		//					score++;
+		//					Console.WriteLine("Great, you got it right!!");
+		//					Console.WriteLine("Press any key to continue...");
+		//					Console.ReadKey();
+		//				}
+		//				else //if (answer != (number1 * number2))
+		//				{
+		//					Console.WriteLine("Sorry, better luck next time!!");
+		//					Console.WriteLine();
+		//					Console.WriteLine("Press any key to continue...");
+		//					Console.ReadKey();
+		//					continue;
+		//				}
+		//			}
+		//		}
 
-				while (true)
-				{
-					Random number = new Random();
-					number1 = number.Next(0, 20);
-					number2 = number.Next(0, 20);
-					Console.WriteLine();
-					Console.WriteLine();
-					Console.WriteLine($"{number1} / {number2}");
-					answer = Console.ReadLine();
-					if (answer.Trim().ToLower() == "q")
-					{
-						GameHistory.Add(new Game
-						{
-							Score = score,
-							Date = DateTime.Now,
-							Type = GameType.Division
-						});
-					Console.WriteLine("Thank you!!");
-					Console.WriteLine();
-					Console.WriteLine($"Here is your score, {name}: {score}");
-					Console.WriteLine();
-					Console.WriteLine("Press Enter to continue...");
-					Console.ReadLine();
-					Console.Clear();
-					math_menu();
-				}
-					else if (Int32.Parse(answer) == (number1 / number2))
-					{
-						score++;
-						Console.WriteLine("Great, you got it right!!");
-						Console.WriteLine("Press Enter to continue...");
-						Console.ReadLine();
-				}
-					else //if (answer != (number1 + number2))
-					{
-						Console.WriteLine("Sorry, better luck next time!!");
-						Console.WriteLine();
-						Console.WriteLine("Press Enter to continue...");
-						Console.ReadLine();
-						continue;
-					}
-				}
-			}
+		//		public void DivisionGame()
+		//		{
+		//			while (true)
+		//			{
+		//				Console.Clear();
+		//				Random number = new Random();
+		//					number1 = number.Next(0, 20);
+		//					number2 = number.Next(0, 20);
+		//					Console.WriteLine();
+		//					Console.WriteLine();
+		//					Console.WriteLine($"{number1} / {number2}");
+		//					answer = Console.ReadLine();
 
-		public void ViewHistory()
-		{
-			Console.Clear();
-			Console.WriteLine($"Here is your history of games, {name}:");
-			Console.WriteLine();
+		//					if (answer.Trim().ToLower() == "q")
+		//					{
+		//						GameHistory.Add(new Game
+		//						{
+		//							Score = score,
+		//							Date = DateTime.Now,
+		//							Type = GameType.Division
+		//						});
+		//					Console.WriteLine("Thank you!!");
+		//					Console.WriteLine();
+		//					Console.WriteLine($"Here is your score, {name}: {score}");
+		//					Console.WriteLine();
+		//					Console.WriteLine("Press any key to continue...");
+		//					Console.ReadKey();
+		//					Console.Clear();
+		//					math_menu();
+		//				}
+		//					else if (Int32.Parse(answer) == (number1 / number2))
+		//					{
+		//						score++;
+		//						Console.WriteLine("Great, you got it right!!");
+		//						Console.WriteLine("Press any key to continue...");
+		//						Console.ReadKey();
+		//				}
+		//					else //if (answer != (number1 + number2))
+		//					{
+		//						Console.WriteLine("Sorry, better luck next time!!");
+		//						Console.WriteLine();
+		//						Console.WriteLine("Press any key to continue...");
+		//						Console.ReadKey();
+		//						continue;
+		//					}
+		//				}
+		//			}
 
-			if (GameHistory.Count > 0)
-			{
-				foreach (var game in GameHistory)
-				{
-					Console.WriteLine($"{game.Date} -- {game.Type} -- {game.Score}");
-				}
-			} 
-			else
-			{
-				Console.Clear();
-				Console.WriteLine("Sorry, you have no game history yet.");
-				Console.WriteLine();
-				Console.WriteLine("Press enter to continue...");
-				Console.ReadLine();
-				Console.Clear();
-				math_menu();
-			}
-		}
+		//		public void ViewHistory()
+		//		{
+		//			Console.Clear();
+		//			Console.WriteLine($"Here is your history of games, {name}:");
+		//			Console.WriteLine();
 
-		public void math_menu()
-		{
+		//			if (GameHistory.Count > 0)
+		//			{
+		//				foreach (var game in GameHistory)
+		//				{
+		//					Console.WriteLine($"{game.Date} -- {game.Type} -- {game.Score}");
+		//				}
+		//			} 
+		//			else
+		//			{
+		//				Console.Clear();
+		//				Console.WriteLine("Sorry, you have no game history yet.");
+		//				Console.WriteLine();
+		//				Console.WriteLine("Press any key to continue...");
+		//				Console.ReadKey();
+		//				Console.Clear();
+		//				math_menu();
+		//			}
+		//		}
+		//	}
+		//}
 
-			Console.WriteLine("Please choose from the following operations: ");
-			Console.WriteLine("A -  Addition");
-			Console.WriteLine("S -  Subtraction");
-			Console.WriteLine("M -  Multiplication");
-			Console.WriteLine("D -  Division");
-			Console.WriteLine("V -  View Game History");
-			Console.WriteLine("Q -  Quit");
-			Console.WriteLine("---------------------");
-			Console.WriteLine();
-
-			menu_choice = Console.ReadLine();
-
-			if (menu_choice.Trim().ToLower() == "a")
-			{
-				AdditionGame();
-			}
-			else if (menu_choice.Trim().ToLower() == "s")
-			{
-				SubtractionGame();
-			}
-			else if (menu_choice.Trim().ToLower() == "m")
-			{
-				MultiplicationGame();
-			}
-			else if (menu_choice.Trim().ToLower() == "d")
-			{
-				DivisionGame();
-			}
-			else if (menu_choice.Trim().ToLower() == "v")
-			{
-				ViewHistory();
-			}
-			else if (menu_choice.Trim().ToLower() == "q")
-			{
-				Console.WriteLine("Thank you!!  Have a nice day!!");
-				Thread.Sleep(2000);
-				Environment.Exit(0);
-			}
-		}
 	}
+
 }
