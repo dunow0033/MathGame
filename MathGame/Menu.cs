@@ -136,12 +136,7 @@ namespace MathGame
 
 				if (answer.Trim().ToLower() == "q")
 				{
-					//GameHistory.Add(new Game
-					//{
-					//	Score = score,
-					//	Date = DateTime.Now,
-					//	Type = GameType.Subtraction
-					//});
+					Helpers.AddToHistory(score, GameType.Addition);
 					Console.WriteLine("Thank you!!");
 					Console.WriteLine();
 					Console.WriteLine($"Here is your score, {name}: {score}");
