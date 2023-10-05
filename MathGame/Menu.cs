@@ -41,6 +41,7 @@ namespace MathGame
 				Console.WriteLine();
 				Console.WriteLine($"{number1} + {number2}");
 				answer = Console.ReadLine();
+
 				if(answer.Trim().ToLower() == "q")
 				{
 					GameHistory.Add(new Game
@@ -114,10 +115,15 @@ namespace MathGame
 				{
 					score++;
 					Console.WriteLine("Great, you got it right!!");
+					Console.WriteLine("Press Enter to continue...");
+					Console.ReadLine();
 				}
-				else //if (answer != (number1 + number2))
+				else //if (answer != (number1 - number2))
 				{
 					Console.WriteLine("Sorry, better luck next time!!");
+					Console.WriteLine();
+					Console.WriteLine("Press Enter to continue...");
+					Console.ReadLine();
 					continue;
 				}
 			}
@@ -158,10 +164,15 @@ namespace MathGame
 				{
 					score++;
 					Console.WriteLine("Great, you got it right!!");
+					Console.WriteLine("Press Enter to continue...");
+					Console.ReadLine();
 				}
-				else //if (answer != (number1 + number2))
+				else //if (answer != (number1 * number2))
 				{
 					Console.WriteLine("Sorry, better luck next time!!");
+					Console.WriteLine();
+					Console.WriteLine("Press Enter to continue...");
+					Console.ReadLine();
 					continue;
 				}
 			}
@@ -202,10 +213,15 @@ namespace MathGame
 					{
 						score++;
 						Console.WriteLine("Great, you got it right!!");
-					}
+						Console.WriteLine("Press Enter to continue...");
+						Console.ReadLine();
+				}
 					else //if (answer != (number1 + number2))
 					{
 						Console.WriteLine("Sorry, better luck next time!!");
+						Console.WriteLine();
+						Console.WriteLine("Press Enter to continue...");
+						Console.ReadLine();
 						continue;
 					}
 				}
@@ -253,8 +269,6 @@ namespace MathGame
 
 			if (menu_choice.Trim().ToLower() == "a")
 			{
-				Console.WriteLine(menu_choice);
-				Thread.Sleep(7000);
 				AdditionGame();
 			}
 			else if (menu_choice.Trim().ToLower() == "s")
