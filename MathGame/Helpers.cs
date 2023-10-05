@@ -44,6 +44,7 @@ namespace MathGame
 			else
 			{
 				Console.WriteLine($"Sorry {name}, you have no game history yet");
+				Console.WriteLine();
 				Console.WriteLine("Press any key to return to main menu");
 				Console.ReadKey();
 				Console.Clear();
