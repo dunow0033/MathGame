@@ -31,14 +31,7 @@ namespace MathGame
 				answer = Console.ReadLine();
 				if (answer.Trim().ToLower() == "q")
 				{
-					Helpers.AddToHistory(score, GameType.Addition);
-					Console.WriteLine("Thank you!!");
-					Console.WriteLine();
-					Console.WriteLine($"Here is your score, {name}: {score}");
-					Console.WriteLine();
-					Console.WriteLine("Press any key to continue...");
-					Console.ReadKey();
-					Console.Clear();
+					QuitGame(name);
 					break;
 				}
 				
@@ -46,14 +39,7 @@ namespace MathGame
 
 				if (result.Trim().ToLower() == "q")
 				{
-					Helpers.AddToHistory(score, GameType.Addition);
-					Console.WriteLine("Thank you!!");
-					Console.WriteLine();
-					Console.WriteLine($"Here is your score, {name}: {score}");
-					Console.WriteLine();
-					Console.WriteLine("Press any key to continue...");
-					Console.ReadKey();
-					Console.Clear();
+					QuitGame(name);
 					break;
 				}
 
@@ -90,19 +76,27 @@ namespace MathGame
 				Console.WriteLine($"{number1} - {number2}");
 				Console.Write($"Answer ('q' to quit):  ");
 				answer = Console.ReadLine();
+				if (answer.Trim().ToLower() == "q")
+				{
+					QuitGame(name);
+					break;
+				}
+
 				var result = Helpers.validateNumber(answer);
 
 				if (result.Trim().ToLower() == "q")
 				{
-					Helpers.AddToHistory(score, GameType.Addition);
-					Console.WriteLine("Thank you!!");
-					Console.WriteLine();
-					Console.WriteLine($"Here is your score, {name}: {score}");
+					QuitGame(name);
+					break;
+				}
+				
+				if (int.Parse(result) == (number1 + number2))
+				{
+					score++;
+					Console.WriteLine("Great, you got it right!!");
 					Console.WriteLine();
 					Console.WriteLine("Press any key to continue...");
 					Console.ReadKey();
-					Console.Clear();
-					break;
 				}
 				else if (int.Parse(result) == (number1 - number2))
 				{
@@ -137,19 +131,27 @@ namespace MathGame
 				Console.WriteLine($"{number1} * {number2}");
 				Console.Write($"Answer ('q' to quit):  ");
 				answer = Console.ReadLine();
+				if (answer.Trim().ToLower() == "q")
+				{
+					QuitGame(name);
+					break;
+				}
+
 				var result = Helpers.validateNumber(answer);
 
 				if (result.Trim().ToLower() == "q")
 				{
-					Helpers.AddToHistory(score, GameType.Addition);
-					Console.WriteLine("Thank you!!");
-					Console.WriteLine();
-					Console.WriteLine($"Here is your score, {name}: {score}");
+					QuitGame(name);
+					break;
+				}
+				
+				if (int.Parse(result) == (number1 + number2))
+				{
+					score++;
+					Console.WriteLine("Great, you got it right!!");
 					Console.WriteLine();
 					Console.WriteLine("Press any key to continue...");
 					Console.ReadKey();
-					Console.Clear();
-					break;
 				}
 				else if (int.Parse(result) == (number1 * number2))
 				{
@@ -187,19 +189,27 @@ namespace MathGame
 				Console.WriteLine($"{number1} / {number2}");
 				Console.Write($"Answer ('q' to quit):  ");
 				answer = Console.ReadLine();
+				if (answer.Trim().ToLower() == "q")
+				{
+					QuitGame(name);
+					break;
+				}
+
 				var result = Helpers.validateNumber(answer);
 
 				if (result.Trim().ToLower() == "q")
 				{
-					Helpers.AddToHistory(score, GameType.Addition);
-					Console.WriteLine("Thank you!!");
-					Console.WriteLine();
-					Console.WriteLine($"Here is your score, {name}: {score}");
+					QuitGame(name);
+					break;
+				}
+
+				if (int.Parse(result) == (number1 + number2))
+				{
+					score++;
+					Console.WriteLine("Great, you got it right!!");
 					Console.WriteLine();
 					Console.WriteLine("Press any key to continue...");
 					Console.ReadKey();
-					Console.Clear();
-					break;
 				}
 				else if (int.Parse(result) == (number1 / number2))
 				{
@@ -217,6 +227,18 @@ namespace MathGame
 					Console.ReadKey();
 				}
 			}
+		}
+
+		public static void QuitGame(string name)
+		{
+			Helpers.AddToHistory(score, GameType.Addition);
+			Console.WriteLine("Thank you!!");
+			Console.WriteLine();
+			Console.WriteLine($"Here is your score, {name}: {score}");
+			Console.WriteLine();
+			Console.WriteLine("Press any key to continue...");
+			Console.ReadKey();
+			Console.Clear();
 		}
 	}
 }

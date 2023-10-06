@@ -71,8 +71,9 @@ namespace MathGame
 		{
 			while (string.IsNullOrEmpty(number) || !Int32.TryParse(number, out _))
 			{
-					// Input is not a valid integer.
-				Console.Write("Invalid input. Please enter a valid integer ('q' to quit):  ");
+				// Input is not a valid integer.
+				Console.WriteLine();
+				Console.Write("Invalid input. Please enter only integers ('q' to quit):  ");
 				number = Console.ReadLine();
 
 				if (number.Trim().ToLower() == "q")

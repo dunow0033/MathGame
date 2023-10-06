@@ -37,12 +37,12 @@ namespace MathGame
 				Console.ReadKey();
 				Console.Clear();
 				Console.WriteLine($@"Please choose a subject:
-    V - View Previous Games
-    A - Addition
-    S - Subtraction
-    M - Multiplication
-    D - Division
-    Q - Quit the program");
+ V - View Previous Games
+ A - Addition
+ S - Subtraction
+ M - Multiplication
+ D - Division
+ Q - Quit the program");
 				Console.WriteLine("------------------------------");
 
 				var gameSelected = Console.ReadLine();
