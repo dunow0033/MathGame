@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace MathGame
 {
@@ -71,8 +72,13 @@ namespace MathGame
 			while (string.IsNullOrEmpty(number) || !Int32.TryParse(number, out _))
 			{
 					// Input is not a valid integer.
-				Console.WriteLine("Invalid input. Please enter a valid integer: ");
+				Console.Write("Invalid input. Please enter a valid integer ('q' to quit):  ");
 				number = Console.ReadLine();
+
+				if (number.Trim().ToLower() == "q")
+				{
+					return number.Trim().ToLower();
+				}
 			}
 
 			return number;
