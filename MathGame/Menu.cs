@@ -15,16 +15,6 @@ namespace MathGame
 		private int number1;
 		private int number2;
 		private int score = 0;
-		//private List<Game> GameHistory = new List<Game>();
-
-		//public void giveMenu()
-		//{
-		//	
-		//	Console.WriteLine($"Welcome, {name}, today is {DateTime.Now.ToString("MM/dd/yyyy")}.");
-		//	Console.WriteLine("---------------------");
-		//	Console.WriteLine();
-		//	math_menu();
-		//}
 
 		internal void ShowMenu(string name)
 		{
@@ -32,17 +22,17 @@ namespace MathGame
 			do
 			{
 				Console.WriteLine("------------------------------");
-				Console.WriteLine($"Hello {name}. It's {DateTime.Now.ToString("MM/dd/yyyy")}. This is your math game.\n");
+				Console.WriteLine($"Hello {name}. It's {DateTime.Now.ToString("MM/dd/yyyy")}. It's your math game!!\n");
 				Console.WriteLine("Press any key to show menu");
 				Console.ReadKey();
 				Console.Clear();
 				Console.WriteLine($@"Please choose a subject:
- V - View Previous Games
- A - Addition
- S - Subtraction
- M - Multiplication
- D - Division
- Q - Quit the program");
+V - View Previous Games
+A - Addition
+S - Subtraction
+M - Multiplication
+D - Division
+Q - Quit the program");
 				Console.WriteLine("------------------------------");
 
 				var gameSelected = Console.ReadLine();

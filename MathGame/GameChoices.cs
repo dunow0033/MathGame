@@ -51,7 +51,7 @@ namespace MathGame
 					Console.WriteLine("Press any key to continue...");
 					Console.ReadKey();
 				}
-				else //if (answer != (number1 + number2))
+				else
 				{
 					Console.WriteLine("Sorry, better luck next time!!");
 					Console.WriteLine();

@@ -1,18 +1,8 @@
-﻿using System;
-using MathGame;
-using System.Diagnostics;
-using System.Xml.Linq;
+﻿using MathGame;
 
-//class Program
-//{
-//	static void Main(string[] args)
-//	{
+string name = Helpers.GetName();
 
-		string name = Helpers.GetName();
+Console.Clear();
 
-		Console.Clear();
-
-		Menu menu = new Menu();
-		menu.ShowMenu(name);
-//	}
-//}
+Menu menu = new Menu();
+menu.ShowMenu(name);
