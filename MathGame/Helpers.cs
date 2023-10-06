@@ -51,6 +51,33 @@ namespace MathGame
 			}
 		}
 
+		internal static int[] GetDivisionNumbers()
+		{
+			var number = new Random();
+			int[] numbers = new int[2];
+
+			do
+			{
+				numbers[0] = number.Next(0, 20);
+				numbers[1] = number.Next(1, 20);
+			}
+			while (numbers[0] % numbers[1] != 0);
+
+			return numbers;
+		}
+
+		internal static string? validateNumber(string number)
+		{
+			while (string.IsNullOrEmpty(number) || !Int32.TryParse(number, out _))
+			{
+					// Input is not a valid integer.
+				Console.WriteLine("Invalid input. Please enter a valid integer: ");
+				number = Console.ReadLine();
+			}
+
+			return number;
+		}
+
 		internal static string GetName() 
 		{
 			Console.WriteLine("Hello, what is your name?");
